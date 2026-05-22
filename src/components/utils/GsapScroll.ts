@@ -1,12 +1,18 @@
 import * as THREE from "three";
 import gsap from "gsap";
 
+// Module-level ref — survives across calls so we can clear before re-creating
+// (setCharTimeline is called on initial load AND on every resize)
+let _intensityInterval: ReturnType<typeof setInterval> | undefined;
+
 export function setCharTimeline(
   character: THREE.Object3D<THREE.Object3DEventMap> | null,
   camera: THREE.PerspectiveCamera
 ) {
   let intensity: number = 0;
-  setInterval(() => {
+  // Clear any existing interval before creating a new one
+  clearInterval(_intensityInterval);
+  _intensityInterval = setInterval(() => {
     intensity = Math.random();
   }, 200);
   const tl1 = gsap.timeline({
