@@ -460,27 +460,30 @@
     display: none;
   }
 
-  .work-rail {
-    flex-direction: row;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    padding: 0 5% 20px;
+  /* Mobile infinite carousel — viewport clips overflow */
+  .work-mobile-viewport {
     width: 100%;
-    gap: 16px;
-    cursor: default;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    overflow: hidden;
+    padding: 0 0 20px;
   }
-  
-  .work-rail::-webkit-scrollbar {
-    display: none;
+
+  /* The sliding strip — wider than viewport, moved by transform */
+  .work-mobile-rail {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding-left: 7.5vw; /* centres the first card (half of 100% - 85%) */
+    will-change: transform;
+    cursor: grab;
+  }
+
+  .work-mobile-rail:active {
+    cursor: grabbing;
   }
 
   .work-card-wrap {
-    flex: 0 0 85%; /* 85% of parent container, prevents bleeding under sidebars */
-    scroll-snap-align: center;
+    width: 85vw;
+    flex: 0 0 85vw;
   }
 
   .work-card {

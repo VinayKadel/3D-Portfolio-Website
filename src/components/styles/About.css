@@ -1,71 +1,350 @@
+/* ═══════════════════════════════════════════════════════
+   ABOUT SECTION
+   ═══════════════════════════════════════════════════════ */
+
 .about-section {
+  width: var(--cWidth);
+  min-height: var(--vh);
   display: flex;
   align-items: center;
-  justify-content: left;
-  place-items: center;
+  justify-content: flex-end; /* right-align to sit beside the 3D avatar */
   position: relative;
-  opacity: 1;
-  height: auto;
-  width: var(--cWidth);
   margin: auto;
+  overflow: visible;
 }
-.about-me {
-  padding: 50px 0px;
-  padding-bottom: 0;
-  width: 500px;
-  max-width: calc(100% - 15px);
+
+/* ── Right column: editor + bio stacked ── */
+.about-right {
+  width: 46%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: relative;
+  z-index: 2;
 }
-.about-me h3 {
-  font-size: 25px;
+
+/* ─── IDE EDITOR PANEL ─── */
+.about-editor {
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 24px 64px rgba(0, 0, 0, 0.65),
+    0 0 40px rgba(94, 234, 212, 0.05);
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
+/* Traffic light chrome */
+.editor-chrome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  background: #161b22;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.traffic {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+.traffic.red    { background: #ff5f57; }
+.traffic.yellow { background: #febc2e; }
+.traffic.green  { background: #28c840; }
+
+.editor-tab {
+  margin-left: 12px;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.45);
+  font-family: "Geist", sans-serif;
+}
+
+/* Code body */
+.editor-body {
+  padding: 14px 0 8px;
+}
+
+.code-line {
+  display: flex;
+  align-items: baseline;
+  padding: 0 20px 0 0;
+  min-height: 20px;
+  white-space: pre;
+}
+
+.code-line:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.line-num {
+  display: inline-block;
+  width: 36px;
+  min-width: 36px;
+  text-align: right;
+  padding-right: 16px;
+  color: rgba(255, 255, 255, 0.18);
+  font-size: 11px;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.line-content {
+  flex: 1;
+}
+
+/* Syntax tokens */
+.tok-kw      { color: #ff7b72; }
+.tok-fn      { color: #d2a8ff; }
+.tok-str     { color: #a5d6ff; }
+.tok-prop    { color: #79c0ff; }
+.tok-num     { color: #f8c555; }
+.tok-bool    { color: #ff7b72; }
+.tok-comment { color: #6e7681; font-style: italic; }
+.tok-plain   { color: #e6edf3; }
+
+/* Blinking cursor */
+.code-cursor-line {
+  display: flex;
+  align-items: center;
+  padding: 2px 0;
+}
+
+.code-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 15px;
+  background: #5eead4;
+  margin-left: 2px;
+  animation: blink 1.1s step-start infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Status bar */
+.editor-statusbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: #1c7b4a;
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Geist", sans-serif;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #28c840;
+}
+.status-sep { opacity: 0.4; }
+
+/* ── Editor focused state ── */
+.about-editor.editor-focused {
+  border-color: rgba(94, 234, 212, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(94, 234, 212, 0.15),
+    0 24px 64px rgba(0, 0, 0, 0.65),
+    0 0 30px rgba(94, 234, 212, 0.08);
+}
+
+/* INSERT mode badge in chrome */
+.editor-mode-badge {
+  margin-left: auto;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #5eead4;
+  font-family: "Geist", sans-serif;
+  opacity: 0.8;
+}
+
+/* Active (cursor) line highlight */
+.code-cursor-line {
+  display: flex;
+  align-items: center;
+  padding: 0 20px 0 0;
+  min-height: 20px;
+  cursor: text;
+  position: relative;
+}
+
+.code-cursor-line.active-line {
+  background: rgba(94, 234, 212, 0.04);
+}
+
+/* Typed text area */
+.typed-content {
+  display: inline-flex;
+  align-items: center;
+  white-space: pre;
+}
+
+/* Blinking cursor — faster when typing is active */
+.code-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 15px;
+  background: #5eead4;
+  margin-left: 1px;
+  flex-shrink: 0;
+  animation: blink 1.1s step-start infinite;
+}
+
+.code-cursor.cursor-active {
+  animation: blink 0.6s step-start infinite;
+}
+
+/* Floating hint */
+.editor-type-hint {
+  position: absolute;
+  left: 56px;
+  font-size: 11.5px;
+  color: rgba(94, 234, 212, 0.75);
+  font-family: "Geist", sans-serif;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  pointer-events: none;
+  animation: blinkHint 1s step-start infinite;
+}
+
+@keyframes blinkHint {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ─── BIO PANEL ─── */
+.about-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.about-eyebrow {
+  font-size: 10.5px;
+  letter-spacing: 4px;
+  color: #5eead4;
+  font-weight: 500;
+  margin: 0 0 12px;
+}
+
+.about-headline {
+  font-size: clamp(28px, 2.5vw, 44px);
+  font-weight: 700;
+  line-height: 1.12;
+  margin: 0 0 16px;
+  color: #fff;
+}
+
+.about-accent { color: #5eead4; }
+
+.about-para {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 28px;
+}
+
+/* Stats */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.about-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+.about-stat:hover { border-color: rgba(94, 234, 212, 0.25); }
+
+.stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #5eead4;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  color: rgba(255, 255, 255, 0.38);
   text-transform: uppercase;
-  letter-spacing: 7px;
-  font-weight: 400;
-  color: var(--accentColor);
 }
 
-.about-me p {
-  font-size: 33px;
-  font-weight: 200;
-  line-height: 36px;
-  letter-spacing: 1px;
+/* Tech pills */
+.about-stack-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.28);
+  margin: 0 0 10px;
 }
 
-@media only screen and (min-width: 600px) {
+.about-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.about-pill {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  background: rgba(94, 234, 212, 0.07);
+  border: 1px solid rgba(94, 234, 212, 0.18);
+  color: rgba(255, 255, 255, 0.65);
+  transition: all 0.2s ease;
+  cursor: default;
+}
+.about-pill:hover {
+  background: rgba(94, 234, 212, 0.14);
+  border-color: rgba(94, 234, 212, 0.42);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ─── TABLET ─── */
+@media (max-width: 1024px) {
   .about-section {
     justify-content: center;
+    min-height: auto;
+    padding: 60px 5%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .about-right {
+    width: 100%;
+    max-width: 600px;
+  }
+  .about-stats {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
-@media only screen and (min-width: 768px) {
-  .about-me {
-    width: 500px;
-    max-width: calc(100% - 70px);
-    transform: translateY(0%);
-  }
+
+/* ─── MOBILE ─── */
+@media (max-width: 640px) {
   .about-section {
-    opacity: 1;
+    padding: 50px 5% 70px;
   }
-}
-@media only screen and (min-width: 1025px) {
-  .about-section {
-    width: var(--cWidth);
-    justify-content: right;
-    max-width: 1920px;
-    height: var(--vh);
-    padding: 0px;
-    opacity: 1;
-  }
-  .about-me {
-    padding: 0px;
-    width: 50%;
-  }
-  .about-me p {
-    font-size: 1.9vw;
-    line-height: 2.3vw;
-  }
-}
-@media only screen and (min-width: 1950px) {
-  .about-me p {
-    font-size: 2.5rem;
-    line-height: 2.7rem;
-  }
+  .about-headline { font-size: 26px; }
+  .about-stats { grid-template-columns: repeat(2, 1fr); }
+  .stat-value { font-size: 20px; }
+  .about-editor { font-size: 11px; }
+  .line-num { width: 28px; min-width: 28px; padding-right: 10px; }
 }
