@@ -199,7 +199,7 @@ const Work = () => {
         <div className="card-body">
           <p className="card-service-label">PROJECT</p>
           <h3 className="card-title">{project.title}</h3>
-          <p className="card-sub">{project.label} — {project.category}</p>
+          <p className="card-sub">{project.label} - {project.category}</p>
           <div className="card-tools-grid">
             {project.tools.map((t, ti) => (
               <span className="card-tool-item" key={ti}>

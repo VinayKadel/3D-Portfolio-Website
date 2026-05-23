@@ -167,7 +167,7 @@ const About = () => {
           </h2>
           <p className="about-para">
             Final-year B.Tech (AI &amp; DS) at CTAE, Udaipur. Full-stack engineer who has
-            taken 20+ products from idea to production — solo. Currently interning at
+            taken 20+ products from idea to production - solo. Currently interning at
             Creative Upaay as the sole developer on a large-scale internal ops platform.
             Clean architecture. Real performance. Systems that scale in the wild.
           </p>

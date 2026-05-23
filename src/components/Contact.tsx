@@ -16,12 +16,12 @@ const Contact = () => {
                 rel="noreferrer"
                 data-cursor="disable"
               >
-                LinkedIn — vinaykadel
+                LinkedIn - vinaykadel
               </a>
             </p>
             <h4>Education</h4>
             <p>
-              B.Tech Artificial Intelligence & Data Science, CTAE Udaipur (MPUAT) — 2022–2026
+              B.Tech Artificial Intelligence & Data Science, CTAE Udaipur (MPUAT) - 2022-2026
             </p>
 
           </div>
