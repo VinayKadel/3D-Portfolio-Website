@@ -79,9 +79,9 @@ const SocialIcons = () => {
       </div>
       <a
         className="resume-button"
-        href="/Vinay_Kumar_Soni_Resume.pdf"
+        href="https://drive.google.com/file/d/17AwpAnzy5h1aZ4h8LqRVDU7NHGJE4B_U/view?usp=sharing"
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
       >
         <HoverLinks text="RESUME" />
         <span>
