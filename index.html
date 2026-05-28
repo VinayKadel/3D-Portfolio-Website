@@ -89,6 +89,15 @@
   <!-- NOTE: Update the Instagram URL above if the handle is different.  -->
   <!-- Add GitHub/LinkedIn URLs to the sameAs array when ready.          -->
 
+  <!-- ===================== GOOGLE ANALYTICS ===================== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GA_ID%"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '%VITE_GA_ID%');
+  </script>
 </head>
 
 <body>
