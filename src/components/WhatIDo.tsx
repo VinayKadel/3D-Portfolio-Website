@@ -89,9 +89,6 @@ const WhatIDo = () => {
             <div className="what-content-in">
               <h3>FRONTEND DEVELOPMENT</h3>
               <h4>Crafting fast, responsive, and interactive UIs</h4>
-              <p>
-                I build mobile-first, offline-capable web applications using React 19 and Next.js with TypeScript, Tailwind CSS, and GSAP animations. From multi-step onboarding flows to admin dashboards, I focus on clean UX and performance.
-              </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
                 <div className="what-tags">React 19</div>
@@ -125,9 +122,6 @@ const WhatIDo = () => {
             <div className="what-content-in">
               <h3>BACKEND &amp; INTEGRATIONS</h3>
               <h4>Building scalable APIs and real-world integrations</h4>
-              <p>
-                I design and build REST APIs with Node.js and Express, backed by MongoDB and Prisma ORM, with production-ready auth flows, real-time systems via Socket.io, and integrations including Razorpay, Google Gemini AI, Cal.com, and Resend.
-              </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
                 <div className="what-tags">Node.js</div>
